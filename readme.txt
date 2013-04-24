@@ -50,7 +50,10 @@ Its original language is german so please be sure to set define('WPLANG', ''); c
 
 == Screenshots ==
 
-assets/tyww.jpg
+1. Time Recording Dashboard Widget
+2. Show Staff Manager Widget 
+3. Backend Human Resource Management
+4. Ill reporting with calendar
 
 == Changelog ==
 
