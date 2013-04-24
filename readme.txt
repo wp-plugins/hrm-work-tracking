@@ -50,7 +50,7 @@ Its original language is german so please be sure to set define('WPLANG', ''); c
 
 == Screenshots ==
 
-/assets/tyww.jpg
+assets/tyww.jpg
 
 == Changelog ==
 
