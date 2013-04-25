@@ -47,11 +47,10 @@ Why is the plugin in German?
 
 Its original language is german so please be sure to set define('WPLANG', ''); correctly or use a plugin changing backend language (like WP Native Dashboard) 
 
-
 == Screenshots ==
 
 1. Time Recording Dashboard Widget
-2. Show Staff Manager Widget 
+2. Showing Staff Manager Widget 
 3. Backend Human Resource Management
 4. Ill reporting with calendar
 
