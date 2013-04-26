@@ -1,7 +1,7 @@
 === HRM Work Tracking ===
 Contributors: Theode
 Donate link: http://www.wp-plugin-dev.com/donate
-Tags: backend, clock, employee, time, time-tracking, tracking, user, Zeiterfassung
+Tags: backend, work, clock, employee, time, time-tracking, tracking, user, Zeiterfassung
 Requires at least: 3.0
 Tested up to: 3.5.1
 Stable tag: 1.0
