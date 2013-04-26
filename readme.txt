@@ -40,11 +40,9 @@ Installation Note: After activating the plugin, once log out and log back in. Yo
 == Frequently asked questions ==
 
 Where can I get support?
-
 Contact us at http://www.wp-plugin-dev.com/support-contact/
 
 Why is the plugin in German?
-
 Its original language is german so please be sure to set define('WPLANG', ''); correctly or use a plugin changing backend language (like WP Native Dashboard) 
 
 == Screenshots ==
