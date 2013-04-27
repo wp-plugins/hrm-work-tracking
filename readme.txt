@@ -18,9 +18,9 @@ HRM work tracking plugin is a complete employee time tracking in the WordPress b
 The plugin is simple: the user logs in and starts his working hours. However, the system has a function to capture the time also when he logs out or computer / browser crashes.
 
 Users can capture
-- the breaks over the surface,
-- knock,
-- sign ill.
+* the breaks over the surface,
+* knock,
+* sign ill.
 
 The security measures of the plugin are also impressive. The user activated the plugin, is the only one who may edit the plugin in the backend and also the only one who sees the additional staff lists. Should he not be the only one, he can set additional user IDs which also belong to the human resources department.
 
@@ -54,8 +54,10 @@ Its original language is german so please be sure to set define('WPLANG', ''); c
 
 == Changelog ==
 
-1.01 fix for activation issue
-1.0 First Version Open Source
+= 1.01 =
+ fix for activation issue
+= 1.0 =
+ First Version Open Source
 
 == Upgrade notice ==
 
