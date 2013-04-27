@@ -124,11 +124,11 @@ if(($in_pause =="" || $in_pause=="no") && $in_office=="yes") { ?>
 <input type="submit" name="hrm_pause" class="pause" value="<?php _e('Pause beginnen', 'hrm-work-tracking'); ?>" />
 <?php } 
 
-if($in_pause=="yes"){ ?>
+else if($in_pause=="yes"){ ?>
 <input type="submit" name="hrm_pause_quit" class="pause_quit" value="<?php _e('Pause beenden', 'hrm-work-tracking'); ?>" />
 <?php } 
 
-if($in_office=="yes" && ($in_pause=="no" ||$in_pause=="")){ ?>
+else if($in_office=="yes" && ($in_pause=="no" ||$in_pause=="")){ ?>
 <input type="submit" name="hrm_finished" class="finished" value="<?php _e('Feierabend', 'hrm-work-tracking'); ?>" /></form><form method="POST" name="hrm_form" action="<?php echo admin_url()."profile.php?page=hrm-ill-page"; ?>"> <input type="submit" name="hrm_ill" class="ill" value="<?php _e('Krank melden', 'hrm-work-tracking'); ?>" />
 </form>
 <?php } 
