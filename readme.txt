@@ -54,10 +54,8 @@ Its original language is german so please be sure to set define('WPLANG', ''); c
 
 == Changelog ==
 
-= 1.01 =
- fix for activation issue
-= 1.0 =
- First Version Open Source
+= 1.01 = fix for activation issue
+= 1.00 =  Initial release
 
 == Upgrade notice ==
 
