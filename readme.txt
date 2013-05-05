@@ -4,7 +4,7 @@ Donate link: http://www.wp-plugin-dev.com/donate
 Tags: backend, work, clock, employee, time, time-tracking, tracking, user, Zeiterfassung
 Requires at least: 3.0
 Tested up to: 3.5.1
-Stable tag: 1.01
+Stable tag: 1.02
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -54,9 +54,8 @@ Its original language is german so please be sure to set define('WPLANG', ''); c
 
 == Changelog ==
 
-
+= 1.02 = spanish translation files
 = 1.01 = fix for activation issue
-spanish translation files
 = 1.00 =  Initial release
 
 == Upgrade notice ==
