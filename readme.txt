@@ -54,8 +54,9 @@ Its original language is german so please be sure to set define('WPLANG', ''); c
 
 == Changelog ==
 
-= 1.02 = add spanish translation
+
 = 1.01 = fix for activation issue
+spanish translation files
 = 1.00 =  Initial release
 
 == Upgrade notice ==

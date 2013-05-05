@@ -3,7 +3,7 @@
 /*
 Plugin Name: HRM Work Tracking	
 Plugin URI: http://wordpress.org/extend/plugins/hrm-work-tracking/
-Version: 1.01
+Version: 1.02
 Description: Ein Plug-in um die Arbeitszeit von mehreren WordPress Usern zu erfassen.
 Author: wp-plugin-dev.com
 Author URI: http://www.wp-plugin-dev.com
