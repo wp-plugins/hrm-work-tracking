@@ -52,7 +52,8 @@ $year=date("Y");
     update_user_meta( $this_user, "in_office", "no");
     update_user_meta( $this_user, "Pausenkonto", "0");
     }else{
-    ?><script>alert('Bitte beenden Sie Ihre Pause zuerst.');</script><?php
+    
+    // deprecated since 1.2
     }
 	
 
@@ -79,12 +80,17 @@ function user_stops_pause($user) {
 
     $this_user=$user;
 	$pause=get_user_meta($this_user, "Pausenbeginn", true);
+	$in_pause=get_user_meta($this_user, "in_pause", true);
+	if ($in_pause=="yes"){
 	$pausenkonto=get_user_meta($this_user, "Pausenkonto", true);
   	$pause_time=current_time('timestamp') - $pause;
   	$neu=$pausenkonto+$pause_time;
   	update_user_meta( $this_user, "Pausenkonto", $neu);
   	update_user_meta( $this_user, "in_pause", "no");
-  	
+	}else{
+		echo "<script>alert('Sie machen grad keine Pause');</script>";
+		
+	}
   	
   	
 	
@@ -132,7 +138,7 @@ function register_hrm() {
 
 
 //shows only a dashboard clock
-function dashboard_clock_function() {
+function dashboard_clock_function() { //deprecated in 1.1
 	
 	echo  "MySQL Time: ".current_time('mysql');
 	echo  "<br /> Timestamp: ".current_time('timestamp');

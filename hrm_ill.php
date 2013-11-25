@@ -14,6 +14,7 @@ function hrm_ill_page_callback() {
 global $current_user;
 $uid = $current_user->ID;
 $ill =$current_user->is_ill;
+$pause=$current_user->in_pause;
 $hrmid = get_option('human_resources_department');
 if(isset($_POST["ill"]) || $ill=="yes"){
 if(isset($_POST["ill"])){
@@ -33,6 +34,7 @@ echo __("Krank gemeldet bis ", 'hrm-work-tracking').$is_ill_until;
 
 
 // Ill page for employees
+if($pause=="no"){
 ?>
 
 <script>
@@ -53,9 +55,25 @@ function validate(){
 <input type="submit" class="ill" id="hrm_ill" value="<?php _e('Krank melden', 'hrm-work-tracking'); ?>" name="ill">
 
 </form>
+<?php /* ?>
+<hr>
+BETA:<br>
+<a href="#" id="insert-media-button" class="button insert-media add_media" data-editor="content" title="Add Media"><span class="wp-media-buttons-icon"></span> Add Media</a>
 
-<?php
+<?php */
+//echo $pause;
 }
+else { // since version 1.2
+echo __("Erst pause beenden!","hrm-work-tracking");
+?>
+<br />
+<form action="<?php echo admin_url(); ?>" name="hrm_form" method="POST">
+<input type="submit" name="hrm_pause_quit" class="pause_quit" value="<?php _e('Pause beenden', 'hrm-work-tracking'); ?>" />
+</form><?php
+
+}
+}
+
 
 
 }

@@ -16,9 +16,11 @@ user_starts_pause($current_user->ID);
 user_stops_pause($current_user->ID);
 }else if(isset($_POST['hrm_ill']) ){
 //declare_ill($current_user->ID);
-}else if(isset($_GET['hrm_reset']) && $_GET['hrm_reset']=="true"){
+} // deprecated in 1.1 re-used in 1.17
+else if(isset($_GET['hrm_reset']) && $_GET['hrm_reset']=="true"){
 reset_times($current_user->ID);
-}else{}
+} // deprecated in 1.1 
+else{}
 
 // get all the data
 $month=date("F");
@@ -131,4 +133,13 @@ if($in_pause=="yes"){ ?>
 if($in_office=="yes" && ($in_pause=="no" ||$in_pause=="")){ ?>
 <input type="submit" name="hrm_finished" class="finished" value="<?php _e('Feierabend', 'hrm-work-tracking'); ?>" /></form><form method="POST" name="hrm_form" action="<?php echo admin_url()."profile.php?page=hrm-ill-page"; ?>"> <input type="submit" name="hrm_ill" class="ill" value="<?php _e('Krank melden', 'hrm-work-tracking'); ?>" />
 <?php } 
-?></form><?php } ?>
+?></form>
+
+<?php //since  version 1.1
+global $pagenow;
+if ($pagenow=="users.php" && $_GET['page']=="hrm-pop-out"){
+echo "<style>#wpfooter, #update-nag, #adminmenuback, #adminmenuwrap, #adminmenushadow, #adminmenu {display:none;}</style>";
+}else{
+echo "<br><a href=\"users.php?page=hrm-pop-out\" target=\"_blank\">".__("Fenster einzeln öffnen", "hrm-work-tracking")."</a>"; }
+}
+ ?>
