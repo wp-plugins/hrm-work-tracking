@@ -7,7 +7,7 @@ global $current_user;
 $uid = $current_user->ID;
 $hrmid = get_option('human_resources_department');
 if($uid==$hrmid || is_hrm()){
-add_submenu_page( 'users.php', __('Personalabteilung', 'hrm-work-tracking'), __('Personalabteilung', 'hrm-work-tracking'), 'manage_options', 'hrm-settings-page', 'hrm_settings_page_callback' ); 
+add_submenu_page( 'users.php', __('Human Resources Department', 'hrm-work-tracking'), __('Human Resources Department', 'hrm-work-tracking'), 'manage_options', 'hrm-settings-page', 'hrm_settings_page_callback' ); 
 }else{}
 }
 
@@ -62,34 +62,12 @@ reset_times($the_user_id);
 
 ?>
 <div class="wrap">
-<div id="icon-users" class="icon32"></div><h2><?php _e('Personalabteilung', 'hrm-work-tracking'); ?></h2>
+<div id="icon-users" class="icon32"></div><h2><?php _e('Human Resources Department', 'hrm-work-tracking'); ?></h2>
 <br /><div style="border: 1px dotted gray; width:300px; background:lightgray;padding:5px;">
 <?php hrd_dashboard(); 
 echo "</div><br />";
 
-/*
-if($uid==$hrmid){?>
 
-<form method="POST" name="hrm-settings">
-<table style="border: 1px solid gray; background:lightgray;">
-<tr><td><input type="submit" class="ill" name="clear_all_time" value="clear all times" /></td></tr>
-</table>
-<table><tr><td>
-<table style="border: 1px solid gray; background:lightgray;">
-<tr><td><label for="other_hrms"><?php _e('Andere HRM Mitarbeiter IDs', 'hrm-work-tracking'); ?></label></td><td>
-<input type="text" name="other_hrms" value="<?php echo get_option('other_hrms'); ?>" /></td><td><small><?php _e('mehrere mit , getrennt', 'hrm-work-tracking'); ?></small></td></tr>
-<tr><td></td><td></td><td><input type="submit" /></td></tr>
-</table>
-</form>
-</td><td>
-<?php if(get_option('hrm_box_removed')!="yes"){ ?>
-<table style="border: 1px solid gray; background:lightgray;">
-<tr><td colspan="3"><small>Do you like this plugin? Do you need help?</small></td></tr><td><?php paypal_spenden_button(); ?></td><td><?php request_support_button();?></td><td><?php remove_box_button();?></td></tr>
-</table>
-<?php }else{} }else{} ?>
-</td></tr></table><br />
-<?php 
-*/
 
 
 if(is_hrm()){
@@ -97,7 +75,7 @@ if(is_hrm()){
 }else{}
 $hddropdown=check_historical_data(); ?>
 <form method="POST" name="hrm-years">
-<?php _e('Zeitraum', 'hrm-work-tracking'); ?>: <select name="dateshow" onchange="this.form.submit()">
+<?php _e('period', 'hrm-work-tracking'); ?>: <select name="dateshow" onchange="this.form.submit()">
 <?php
 foreach ($hddropdown as $hd){
 echo "<option value=\"".$hd."\"";
@@ -116,12 +94,12 @@ echo ">".$dt[0]." ".__($dt[1])."</option>";
 <table class="wp-list-table widefat fixed users" cellspacing="0">
 	<thead>
 	<tr>
-	<th scope='col' id='working' class='manage-column'><?php _e('Online', 'hrm-work-tracking');?></th><th scope='col' id='working' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=id">ID</a></th><th scope='col' id='cb' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=name"><?php _e('Name', 'hrm-work-tracking');?></a></th><th scope='col' class='manage-column'><?php _e('E-mail', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('Sollstunden pro Tag', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('Stunden pro Woche / Monat', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('Ist-Stunden pro Monat', 'hrm-work-tracking');?></th><?php  if (get_option("remote_logging_option")=="on"){?><th>Remote Logging</th><?php }else{} ?></tr>
+	<th scope='col' id='working' class='manage-column'><?php _e('online', 'hrm-work-tracking');?></th><th scope='col' id='working' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=id">ID</a></th><th scope='col' id='cb' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=name"><?php _e('Name', 'hrm-work-tracking');?></a></th><th scope='col' class='manage-column'><?php _e('e-mail', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('target hours per day', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('hours per week / month', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('actual hours per month', 'hrm-work-tracking');?></th><?php  if (get_option("remote_logging_option")=="on"){?><th>Remote Logging</th><?php }else{} ?></tr>
 	</thead>
 
 	<tfoot>
 	<tr>
-	<th scope='col' id='working' class='manage-column'><?php _e('Online', 'hrm-work-tracking');?></th><th scope='col' id='working' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=id">ID</a></th><th scope='col' id='cb' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=name"><?php _e('Name', 'hrm-work-tracking');?></a></th><th scope='col' class='manage-column'><?php _e('E-mail', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('Sollstunden pro Tag', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('Stunden pro Woche / Monat', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('Ist-Stunden pro Monat', 'hrm-work-tracking');?></th><?php  if (get_option("remote_logging_option")=="on"){?><th>Remote Logging</th><?php }else{} ?></tr>
+	<th scope='col' id='working' class='manage-column'><?php _e('online', 'hrm-work-tracking');?></th><th scope='col' id='working' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=id">ID</a></th><th scope='col' id='cb' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=name"><?php _e('Name', 'hrm-work-tracking');?></a></th><th scope='col' class='manage-column'><?php _e('e-mail', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('target hours per day', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('hours per week / month', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('actual hours per month', 'hrm-work-tracking');?></th><?php  if (get_option("remote_logging_option")=="on"){?><th>Remote Logging</th><?php }else{} ?></tr>
 
 	<tbody id="the-list" data-wp-lists='list:user'>
 		
@@ -145,7 +123,7 @@ $blogusers = get_users('blog_id=1&orderby='.$_GET['uo']);
     echo '<td><font color="#ff0000">'.$arbeitzeit_diesen_monat.'';
     }else
     {echo '<td><font>'.$arbeitzeit_diesen_monat;}
-    if($heute!=0){echo ' + '.$heute.' '.__('laufend', 'hrm-work-tracking');}else{} 
+    if($heute!=0){echo ' + '.$heute.' '.__('ongoing', 'hrm-work-tracking');}else{} 
     echo '</font></td>';
     
   // --------------------------------------------------------------------    
@@ -182,16 +160,16 @@ $hrmid = get_option('human_resources_department');
 if($uid==$hrmid || is_hrm()){
 ?>
 
-	<h3><?php _e('Arbeitszeit Einstellung', 'hrm-work-tracking'); ?></h3>
+	<h3><?php _e('working time Settings', 'hrm-work-tracking'); ?></h3>
 
 	<table class="form-table">
 
 		<tr>
-			<th><label for="whow"><?php _e('Wochenarbeitszeit', 'hrm-work-tracking'); ?></label></th>
+			<th><label for="whow"><?php _e('weekly hours of work', 'hrm-work-tracking'); ?></label></th>
 
 			<td>
 				<input type="text" name="whow" id="whow" value="<?php echo esc_attr( get_the_author_meta( 'whow', $user->ID ) ); ?>" class="regular-text" /><br />
-				<span class="description"><?php _e('Die wöchentliche Arbeitszeit', 'hrm-work-tracking'); ?></span>
+				<span class="description"><?php _e('Weekly work time', 'hrm-work-tracking'); ?></span>
 			</td>
 		</tr>
 

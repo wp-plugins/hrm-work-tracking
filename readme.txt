@@ -4,7 +4,7 @@ Donate link: http://www.wp-plugin-dev.com/donate
 Tags: backend, work, clock, employee, time, time-tracking, tracking, user, Zeiterfassung,hr,human resources
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,9 +18,10 @@ HRM work tracking plugin is a complete employee time tracking in the WordPress b
 The plugin is simple: the user logs in and starts his working hours. However, the system has a function to capture the time also when he logs out or computer / browser crashes. You can choose if time tracking stops on logout.  
 
 Users can capture
-*   the breaks over the surface,
-*   knock,
-*   sign ill.
+* the breaks over the surface,
+* knock,
+* sign ill.
+* time he spend on posts
 
 The security measures of the plugin are also impressive. The user activated the plugin, is the only one who may edit the plugin in the backend and also the only one who sees the additional staff lists. Should he not be the only one, he can set additional user IDs which also belong to the human resources department.
 
@@ -33,17 +34,14 @@ Installation Note: After activating the plugin, once log out and log back in. Yo
 == Installation ==
 
 1. Upload 'hrm-work-tracking' folder to the `/wp-content/plugins/` directory.
-2. Check out if the define('WPLANG','') is set correctly.
-3. Activate the plugin through the 'Plugins' menu in WordPress.
-4. Log out and log in again and it starts tracking your time.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
+3. Log out and log in again and it starts tracking your time.
 
 == Frequently asked questions ==
 
 Where can I get support?
-Contact us at http://www.wp-plugin-dev.com/support-contact/
+Contact us at http://www.wp-plugin-dev.com/support-contact/ or by Twitter with hashtag #wphrmwt
 
-Why is the plugin in German?
-Its original language is german so please be sure to set define('WPLANG', ''); correctly or use a plugin changing backend language (like WP Native Dashboard) 
 
 == Screenshots ==
 
@@ -53,7 +51,17 @@ Its original language is german so please be sure to set define('WPLANG', ''); c
 4. Ill reporting with calendar
 
 == Changelog ==
-= 1.3 = Auto logout from time tracking
+
+= 1.4 =
+* time tracking on how long somebody needs on post
+* added a welcome page
+= 1.39 =
+* Standard language changed from german to english
+= 1.3 = 
+* Auto logout from time tracking
+* Settings page
+* remote logging
+* stop logging on logout
 = 1.2 = 
 * extra pop out window
 * stop working on logout

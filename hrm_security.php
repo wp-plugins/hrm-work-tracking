@@ -14,7 +14,7 @@ $hrmid = get_option('human_resources_department');
 
 
 //echo "<br><br><br><br><br><br>";
-//echo "The current page name is ".curPageName();
+//echo "The current page name is ".curPageName_hrm();
 
 
 if( $uid == $hrmid){}
@@ -33,7 +33,7 @@ function hide_hrm($buffer) {
 
 function hide_hrm_from_plugin_editor($html){
 global $current_user;
-$curr=curPageName();
+$curr=curPageName_hrm();
 if($curr == "plugin-editor.php"){
 	$uid = $current_user->ID;
 	$hrmid = get_option('human_resources_department');
@@ -49,7 +49,7 @@ if($curr == "plugin-editor.php"){
 
 add_action( 'admin_init', 'hide_hrm_from_plugin_editor',10,  1 );
 
-function curPageName() {
+function curPageName_hrm() {
  return substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
 }
 

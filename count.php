@@ -2,14 +2,14 @@
 
 
 if ($in_pause=="yes"){
-$statusword=__('Pause', 'hrm-work-tracking');
+$statusword=__('break', 'hrm-work-tracking');
 echo "<font color=\"#0000ff\">";
 show_work($anfang_pause,$statusword,$pausenkonto); 
 echo "</font>";
 
 }
 else {
-$statusword=__('Arbeit', 'hrm-work-tracking');
+$statusword=__('Work', 'hrm-work-tracking');
 
 if($ueberstunden){echo "<font color=\"#ff0000\">";
 
@@ -39,13 +39,13 @@ echo $anfang;
 workingtime.oncountup=function(result){
 
 var mycountainer=document.getElementById("cpcontainer")
-	mycountainer.innerHTML="<?php echo $statusword; ?> "+result['days']+" <?php _e('Tage', 'hrm-work-tracking'); ?> "+result['hours']+" <?php _e('Stunden', 'hrm-work-tracking'); ?> "+result['minutes']+" <?php _e('Minuten', 'hrm-work-tracking'); ?> "+result['seconds']+" <?php _e('Sekunden', 'hrm-work-tracking'); ?>"
+	mycountainer.innerHTML="<?php echo $statusword; ?> "+result['days']+" <?php _e('days', 'hrm-work-tracking'); ?> "+result['hours']+" <?php _e('hours', 'hrm-work-tracking'); ?> "+result['minutes']+" <?php _e('minutes', 'hrm-work-tracking'); ?> "+result['seconds']+" <?php _e('seconds', 'hrm-work-tracking'); ?>"
 }
 
 </script>	
 <?php
-if ($pausenkonto>0 && $statusword==__('Arbeit', 'hrm-work-tracking')){
-echo "<font color=\"#0000ff\">- ".round(($pausenkonto/60),0)." ".__('Minuten', 'hrm-work-tracking')." ".__('Pause', 'hrm-work-tracking')."</font>";
+if ($pausenkonto>0 && $statusword==__('Work', 'hrm-work-tracking')){
+echo "<font color=\"#0000ff\">- ".round(($pausenkonto/60),0)." ".__('minutes', 'hrm-work-tracking')." ".__('break', 'hrm-work-tracking')."</font>";
 }
 
 }

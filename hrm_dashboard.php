@@ -1,6 +1,27 @@
 <?php
 
+function add_dashboard_clock() { //deprecated in 1.1
+	wp_add_dashboard_widget('dashboard_clock', __('clock', 'hrm-work-tracking'), 'dashboard_clock_function');	
+} 
 
+function add_dashboard_hrd() {
+	wp_add_dashboard_widget('dashboard_hrd', __('Human Resources Department', 'hrm-work-tracking'), 'hrd_dashboard');	
+} 
+
+function add_hrm_wt() {
+	wp_add_dashboard_widget('dashboard_hrm_wt', __('time recording', 'hrm-work-tracking'), 'dashboard_hrm_wt_function');	
+ 	global $wp_meta_boxes;
+ 	$normal_dashboard_hrm = $wp_meta_boxes['dashboard']['normal']['core'];
+ 	$hrm_widget_backup = array( 'dashboard_hrm_wt' => $normal_dashboard_hrm['dashboard_hrm_wt'] );
+ 	unset( $normal_dashboard_hrm['dashboard_hrm_wt'] );
+ 	$sorted_dashboard_hrm = array_merge( $hrm_widget_backup, $normal_dashboard_hrm ); 
+ 	$wp_meta_boxes['dashboard']['normal']['core'] = $sorted_dashboard_hrm;
+
+} 
+
+//add_action('wp_dashboard_setup', 'add_dashboard_clock' ); //deprecated in 1.1
+add_action('wp_dashboard_setup', 'add_dashboard_hrd' );
+add_action('wp_dashboard_setup', 'add_hrm_wt' );
 
 // shows the main widget with work tracking functionality
 function dashboard_hrm_wt_function() {
@@ -47,7 +68,7 @@ $status="<span class='green-circle'></span>";
 else if($is_ill=="yes")
 {
 
-$status="<span class='red-circle'>&cross;</span> <small>".__("Krank bis", 'hrm-work-tracking')." ".$is_ill_until."</small>";}
+$status="<span class='red-circle'>&cross;</span> <small>".__("ill until", 'hrm-work-tracking')." ".$is_ill_until."</small>";}
 else
 {$status="<span class='red-circle'></span>";}
 
@@ -77,7 +98,7 @@ echo "</table>";
 
 ?>
 <style>.pa{border-left:1px gray solid;border-top:1px solid gray;text-align:right;}</style>
-<table><tr><td><?php _e('Monat', 'hrm-work-tracking'); ?></td><td><?php _e('Soll Arbeitsstunden', 'hrm-work-tracking'); ?></td><td><?php _e('Ist Arbeitsstunden', 'hrm-work-tracking'); ?></td></tr>
+<table><tr><td><?php _e('month', 'hrm-work-tracking'); ?></td><td><?php _e('target hours', 'hrm-work-tracking'); ?></td><td><?php _e('actual hours', 'hrm-work-tracking'); ?></td></tr>
 <tr><td class="pa"><?php echo $month; ?></td><td class="pa"><?php echo ($current_user->whow*4); ?></td><td class="pa"><?php 
 
 $ms=$current_user->whow*4;
@@ -114,7 +135,7 @@ if($in_office=="yes"){
 include ('count.php');
 }else{
 
-echo __("Arbeitszeit", 'hrm-work-tracking').": ".$arbeitszeit_gesamt." ".__("Stunden", 'hrm-work-tracking')." ".__("im", 'hrm-work-tracking')." ".$month;
+echo __("working time", 'hrm-work-tracking').": ".$arbeitszeit_gesamt." ".__("hours", 'hrm-work-tracking')." ".__("in", 'hrm-work-tracking')." ".$month;
 }
 
 
@@ -123,15 +144,15 @@ echo __("Arbeitszeit", 'hrm-work-tracking').": ".$arbeitszeit_gesamt." ".__("Stu
 <br><?php 
 
 if(($in_pause =="" || $in_pause=="no") && $in_office=="yes") { ?>
-<input type="submit" name="hrm_pause" class="pause" value="<?php _e('Pause beginnen', 'hrm-work-tracking'); ?>" />
+<input type="submit" name="hrm_pause" class="pause" value="<?php _e('start break', 'hrm-work-tracking'); ?>" />
 <?php } 
 
 if($in_pause=="yes"){ ?>
-<input type="submit" name="hrm_pause_quit" class="pause_quit" value="<?php _e('Pause beenden', 'hrm-work-tracking'); ?>" />
+<input type="submit" name="hrm_pause_quit" class="pause_quit" value="<?php _e('quit break', 'hrm-work-tracking'); ?>" />
 <?php } 
 
 if($in_office=="yes" && ($in_pause=="no" ||$in_pause=="")){ ?>
-<input type="submit" name="hrm_finished" class="finished" value="<?php _e('Feierabend', 'hrm-work-tracking'); ?>" /></form><form method="POST" name="hrm_form" action="<?php echo admin_url()."profile.php?page=hrm-ill-page"; ?>"> <input type="submit" name="hrm_ill" class="ill" value="<?php _e('Krank melden', 'hrm-work-tracking'); ?>" />
+<input type="submit" name="hrm_finished" class="finished" value="<?php _e('quitting time', 'hrm-work-tracking'); ?>" /></form><form method="POST" name="hrm_form" action="<?php echo admin_url()."profile.php?page=hrm-ill-page"; ?>"> <input type="submit" name="hrm_ill" class="ill" value="<?php _e('report ill', 'hrm-work-tracking'); ?>" />
 <?php } 
 ?></form>
 
@@ -140,6 +161,10 @@ global $pagenow;
 if ($pagenow=="users.php" && $_GET['page']=="hrm-pop-out"){
 echo "<style>#wpfooter, #update-nag, #adminmenuback, #adminmenuwrap, #adminmenushadow, #adminmenu {display:none;}</style>";
 }else{
-echo "<br><a href=\"users.php?page=hrm-pop-out\" target=\"_blank\">".__("Fenster einzeln öffnen", "hrm-work-tracking")."</a>"; }
+echo "<br><a href=\"users.php?page=hrm-pop-out\" target=\"_blank\">".__("Open in new window", "hrm-work-tracking")."</a>"; }
 }
+
+//since 1.4
+//add_shortcode( 'hrm-front' , 'dashboard_hrm_wt_function');
+
  ?>

@@ -121,6 +121,7 @@ update_option( 'human_resources_department', $current_user->ID);
 }
 
 
+
 function reset_times($user){
 $month=date("F");
 $year=date("Y");
@@ -152,11 +153,11 @@ function hrd_dashboard() {
 	
 	$head_of_hrd=get_userdata( get_option('human_resources_department') );
 	
-	echo  __('Personalchef', 'hrm-work-tracking')."<br>";
+	echo  __('Staff Manager', 'hrm-work-tracking')."<br>";
 	echo $head_of_hrd->user_firstname." ".$head_of_hrd->user_lastname."<br />";;
 	echo $head_of_hrd->user_email;
 	if(isset($head_of_hrd->tel)){
-	echo "<br />".__('Telefon', 'hrm-work-tracking').": ".$head_of_hrd->tel;
+	echo "<br />".__('phone', 'hrm-work-tracking').": ".$head_of_hrd->tel;
 
 	}
 
@@ -183,6 +184,6 @@ return "".$day[1]." ".$day[2].", ".$day[0]." ".$fulldate[1];
 
 // here are the security algorhythms to prevent other users to make changes 
 include ('hrm_security.php');
-
+// the new function to get how long somebody wrote on an article.
 
 ?>

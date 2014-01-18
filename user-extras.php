@@ -19,15 +19,15 @@ $is_ill=get_user_meta($user->ID, "is_ill", true);
     // set status
 
 if($in_office=="yes" && $in_pause=="no"){
-$status="<span class='green-circle'></span> ".__("anwesend", 'hrm-work-tracking');
+$status="<span class='green-circle'></span> ".__("present", 'hrm-work-tracking');
 }else if($in_office=="yes" && $in_pause=="yes")
-{$status="<span class='orange-circle'></span> ".__("pause", 'hrm-work-tracking');}
+{$status="<span class='orange-circle'></span> ".__("break", 'hrm-work-tracking');}
 else if($is_ill=="yes")
 {
 $is_ill_until=get_user_meta($user->ID, "is_ill_until", true);
-$status="<span class='red-circle'> &cross;</span> ".__("Krank bis", 'hrm-work-tracking')." ".$is_ill_until;}
+$status="<span class='red-circle'> &cross;</span> ".__("ill until", 'hrm-work-tracking')." ".$is_ill_until;}
 else
-{$status="<span class='red-circle'></span> ".__("abwesend", 'hrm-work-tracking');}
+{$status="<span class='red-circle'></span> ".__("absent", 'hrm-work-tracking');}
 	if ( 'working' == $column_name )
 		return $status;
     return $value;
@@ -43,15 +43,15 @@ $is_ill=get_user_meta($user->ID, "is_ill", true);
     // set status
 
 if($in_office=="yes" && $in_pause=="no"){
-$status="<span class='green-circle'></span> ".__("anwesend", 'hrm-work-tracking');
+$status="<span class='green-circle'></span> ".__("present", 'hrm-work-tracking');
 }else if($in_office=="yes" && $in_pause=="yes")
-{$status="<span class='orange-circle'></span> ".__("pause", 'hrm-work-tracking');}
+{$status="<span class='orange-circle'></span> ".__("break", 'hrm-work-tracking');}
 else if($is_ill=="yes")
 {
 $is_ill_until=get_user_meta($user->ID, "is_ill_until", true);
-$status="<span class='red-circle'> &cross;</span> ".__("Krank bis", 'hrm-work-tracking')." ".$is_ill_until;}
+$status="<span class='red-circle'> &cross;</span> ".__("ill until", 'hrm-work-tracking')." ".$is_ill_until;}
 else
-{$status="<span class='red-circle'></span> ".__("abwesend", 'hrm-work-tracking');}
+{$status="<span class='red-circle'></span> ".__("absent", 'hrm-work-tracking');}
 	
 	
     return $status;

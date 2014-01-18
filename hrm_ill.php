@@ -6,7 +6,7 @@ function register_my_hrm_ill_submenu_page() {
 global $current_user;
 
 
-add_submenu_page( 'users.php', __('Krankmeldung', 'hrm-work-tracking'), __('Krankmeldung', 'hrm-work-tracking'), 'read', 'hrm-ill-page', 'hrm_ill_page_callback' ); 
+add_submenu_page( 'users.php', __('Sick Certificate', 'hrm-work-tracking'), __('Sick Certificate', 'hrm-work-tracking'), 'read', 'hrm-ill-page', 'hrm_ill_page_callback' ); 
 
 }
 
@@ -20,9 +20,9 @@ if(isset($_POST["ill"]) || $ill=="yes"){
 if(isset($_POST["ill"])){
 declare_ill($uid,$_POST['date_field']);
 }
-echo "<h1>".__("Krankmeldung", 'hrm-work-tracking')."</h1><br />";
+echo "<h1>".__("Sick Certificate", 'hrm-work-tracking')."</h1><br />";
 $is_ill_until = get_user_meta($uid, "is_ill_until", true);
-echo __("Krank gemeldet bis ", 'hrm-work-tracking').$is_ill_until;
+echo __("absent due to illness to ", 'hrm-work-tracking').$is_ill_until;
 
 //}
 //else if(($uid==$hrmid || is_hrm()) && !isset($_POST['hrm_ill'])){
@@ -30,7 +30,7 @@ echo __("Krank gemeldet bis ", 'hrm-work-tracking').$is_ill_until;
 // Ill page for HRMs
 //hrm_settings_page_callback();
 
-}else {echo "<h1>".__("Krankmeldung", 'hrm-work-tracking')."</h1>";
+}else {echo "<h1>".__("Sick Certificate", 'hrm-work-tracking')."</h1>";
 
 
 // Ill page for employees
@@ -41,21 +41,22 @@ if($pause=="no"){
 function validate(){
     if(document.sick_certificate.date_field.value == "")
     {
-        alert("<?php _e("Bitte Datum eintragen!", 'hrm-work-tracking'); ?>");
+        alert("<?php _e("Please enter Date!", 'hrm-work-tracking'); ?>");
         return false;
     }
 }
 </script>
 
-<?php _e("Bitte geben Sie das Datum an, bis zu dem Sie krank gemeldet sind.", 'hrm-work-tracking'); ?>
+<?php _e("Please provide the date from the doctor's note.", 'hrm-work-tracking'); ?>
 <form action="<?php echo admin_url()."/profile.php?page=hrm-ill-page"; ?>" METHOD="POST" name="sick_certificate" onsubmit="return validate();">
 
 <input type="text" name="date_field" class="mydatepicker" value="" /><br />
 <br />
-<input type="submit" class="ill" id="hrm_ill" value="<?php _e('Krank melden', 'hrm-work-tracking'); ?>" name="ill">
+<input type="submit" class="ill" id="hrm_ill" value="<?php _e('report ill', 'hrm-work-tracking'); ?>" name="ill">
 
 </form>
-<?php /* ?>
+<?php
+ /* ?>
 <hr>
 BETA:<br>
 <a href="#" id="insert-media-button" class="button insert-media add_media" data-editor="content" title="Add Media"><span class="wp-media-buttons-icon"></span> Add Media</a>
@@ -64,13 +65,12 @@ BETA:<br>
 //echo $pause;
 }
 else { // since version 1.2
-echo __("Erst pause beenden!","hrm-work-tracking");
+echo __("Please quit break first!","hrm-work-tracking");
 ?>
 <br />
 <form action="<?php echo admin_url(); ?>" name="hrm_form" method="POST">
-<input type="submit" name="hrm_pause_quit" class="pause_quit" value="<?php _e('Pause beenden', 'hrm-work-tracking'); ?>" />
+<input type="submit" name="hrm_pause_quit" class="pause_quit" value="<?php _e('quit break', 'hrm-work-tracking'); ?>" />
 </form><?php
-
 }
 }
 
@@ -78,7 +78,7 @@ echo __("Erst pause beenden!","hrm-work-tracking");
 
 }
 
-function my_admin_footer() {
+function my_admin_hrm_footer() {
 	?>
 	<script type="text/javascript">
 	jQuery(document).ready(function(){
@@ -89,7 +89,7 @@ function my_admin_footer() {
 	</script>
 	<?php
 }
-add_action('admin_footer', 'my_admin_footer');
+add_action('admin_footer', 'my_admin_hrm_footer');
 
 
 function my_admin_init() {

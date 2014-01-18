@@ -7,7 +7,7 @@ function my_users_settings_menu() {
 $uid = $current_user->ID;
 $hrmid = get_option('human_resources_department');
 if ($hrmid==$uid){
-	add_users_page(__('Einstellungen','hrm-work-tracking'),__('Einstellungen','hrm-work-tracking'), 'activate_plugins', 'hrm-settings', 'hrm_settings_page');
+	add_users_page(__('Settings','hrm-work-tracking'),__('Settings','hrm-work-tracking'), 'activate_plugins', 'hrm-settings', 'hrm_settings_page');
 }
 }
 
@@ -34,6 +34,9 @@ $hrmid = get_option('human_resources_department');
  }  
 if(isset($_POST['remote_logging_option'])){
 update_option("remote_logging_option", $_POST["remote_logging_option"] );
+}else{}
+if(isset($_POST['post_measure_logging_option'])){
+update_option("post_measure_logging_option", $_POST["post_measure_logging_option"] );
 }else{}
 if(isset($_POST['logoff_logging_option'])){
 update_option("logoff_logging_option", $_POST["logoff_logging_option"] );
@@ -63,7 +66,7 @@ $_POST['dateshow']=date("Y")."_".date("F");
 ?>
 <form method="POST" name="hrm-settings">
 <div class="wrap">
-<div id="icon-users" class="icon32"></div><h2><?php _e('Personalabteilung', 'hrm-work-tracking'); ?> - <?php _e('Einstellungen', 'hrm-work-tracking'); ?></h2>
+<div id="icon-users" class="icon32"></div><h2><?php _e('Human Resources Department', 'hrm-work-tracking'); ?> - <?php _e('Settings', 'hrm-work-tracking'); ?></h2>
 <br />
 <?php
 
@@ -77,8 +80,8 @@ reset_times($the_user_id);
 }else if(isset($_POST['clear_all_time'])){
 
 
-echo "<div class=\"error\"> <p>".__("Zeit aller Benutzer löschen?","hrm-work-tracking")." </p> ";
-echo "<p><input type=submit name=\"yes_clear_all_times\" class=\"ill\" value=\"".__("Ja","hrm-work-tracking")."\"></p>";
+echo "<div class=\"error\"> <p>".__("Clear time of all users?","hrm-work-tracking")." </p> ";
+echo "<p><input type=submit name=\"yes_clear_all_times\" class=\"ill\" value=\"".__("Yes","hrm-work-tracking")."\"></p>";
 echo "</div>";
 
 
@@ -87,7 +90,7 @@ echo "</div>";
 
 
 if(isset($_POST['change_settings'])){
-echo "<div class=\"updated\"> <p>".__("Einstellungen gesichert","hrm-work-tracking")." </p> </div>";
+echo "<div class=\"updated\"> <p>".__("Settings saved.","hrm-work-tracking")." </p> </div>";
 }else{}
 ?>
 
@@ -108,52 +111,63 @@ if(!isset($_POST['clear_all_time'])){
 
 <div class="postbox" >
 <div class="inside">
-<input type="submit" class="ill" name="clear_all_time" value="<?php _e("Alle Zeiten löschen","hrm-work-tracking"); ?>" />
+<input type="submit" class="ill" name="clear_all_time" value="<?php _e("Clear all times","hrm-work-tracking"); ?>" />
 </div></div>
 <?php }else{} ?>
 <div class="postbox" >
 <div class="inside">
-<label for="other_hrms"><?php _e('Andere HRM Mitarbeiter IDs', 'hrm-work-tracking'); ?></label>
-<input type="text" name="other_hrms" value="<?php echo get_option('other_hrms'); ?>" /><small><?php _e('mehrere mit , getrennt', 'hrm-work-tracking'); ?></small>
+<label for="other_hrms"><?php _e('Other HRM employees', 'hrm-work-tracking'); ?></label>
+<input type="text" name="other_hrms" value="<?php echo get_option('other_hrms'); ?>" /><small><?php _e('multiple seperated by comma', 'hrm-work-tracking'); ?></small>
 </div></div>
 
 <div class="postbox" >
 <div class="inside">
 <?php $alo=get_option("auto_logoff_option"); ?>
-<?php echo __("Zeiterfassung beenden automatisch","hrm-work-tracking"); ?> 
+<?php echo __("Stop time tracking after certain time","hrm-work-tracking"); ?> 
 <input type="radio" name="auto_logoff_option" value="on" 
 <?php if($alo=="on"){echo "checked=checked";}else{} ?>
-/> <?php echo __("an","hrm-work-tracking"); ?> <input type="radio" name="auto_logoff_option" value="off" <?php if($alo=="off"  || $alo==""){echo "checked=checked";}else{} ?> /> <?php echo __("aus","hrm-work-tracking"); ?> <small>(<?php echo __("Nach einem f&uuml;nftel der Wochenarbeitszeit.","hrm-work-tracking"); ?>)</small> </div></div>
+/> <?php echo __("on","hrm-work-tracking"); ?> <input type="radio" name="auto_logoff_option" value="off" <?php if($alo=="off"  || $alo==""){echo "checked=checked";}else{} ?> /> <?php echo __("off","hrm-work-tracking"); ?> <small>(<?php echo __("after a fith of weekly hours.","hrm-work-tracking"); ?>)</small> </div></div>
 
 
 <div class="postbox" >
 <div class="inside">
 <?php $llo=get_option("logoff_logging_option"); ?>
-<?php echo __("Zeiterfassung beenden bei Logout","hrm-work-tracking"); ?> 
+<?php echo __("Stop time tracking on log out","hrm-work-tracking"); ?> 
 <input type="radio" name="logoff_logging_option" value="on" 
 <?php if($llo=="on"){echo "checked=checked";}else{} ?>
-/> <?php echo __("an","hrm-work-tracking"); ?> <input type="radio" name="logoff_logging_option" value="off" <?php if($llo=="off"  || $llo==""){echo "checked=checked";}else{} ?> /> <?php echo __("aus","hrm-work-tracking"); ?></div></div>
+/> <?php echo __("on","hrm-work-tracking"); ?> <input type="radio" name="logoff_logging_option" value="off" <?php if($llo=="off"  || $llo==""){echo "checked=checked";}else{} ?> /> <?php echo __("off","hrm-work-tracking"); ?></div></div>
 
 
 <div class="postbox" >
 <div class="inside">
 <?php $rlo=get_option("remote_logging_option"); 
 ?>
-Remote Logging <?php echo __("ist","hrm-work-tracking"); ?> <input type="radio" name="remote_logging_option" value="on" 
+Remote Logging <?php echo __("is","hrm-work-tracking"); ?> <input type="radio" name="remote_logging_option" value="on" 
 <?php if($rlo=="on"){echo "checked=checked";}else{} ?>
-/> <?php echo __("an","hrm-work-tracking"); ?> <input type="radio" name="remote_logging_option" value="off" <?php if($rlo=="off"  || $rlo==""){echo "checked=checked";}else{} ?> /> <?php echo __("aus","hrm-work-tracking"); ?></div></div>
+/> <?php echo __("on","hrm-work-tracking"); ?> <input type="radio" name="remote_logging_option" value="off" <?php if($rlo=="off"  || $rlo==""){echo "checked=checked";}else{} ?> /> <?php echo __("off","hrm-work-tracking"); ?></div></div>
+
+<div class="postbox" >
+<div class="inside">
+<?php $pmlo=get_option("post_measure_logging_option"); 
+?>
+<?php echo __("Time to write posts is","hrm-work-tracking"); ?> <input type="radio" name="post_measure_logging_option" value="on" 
+<?php if($pmlo=="on"){echo "checked=checked";}else{} ?>
+/> <?php echo __("on","hrm-work-tracking"); ?> <input type="radio" name="post_measure_logging_option" value="off" <?php if($pmlo=="off"  || $pmlo==""){echo "checked=checked";}else{} ?> /> <?php echo __("off","hrm-work-tracking"); ?>
+</div></div>
+
 
 </form>
 
 <div class="postbox" >
 <div class="inside">
 <?php _e("Support-Box","hrm-work-tracking"); ?>
-<?php if(get_option('hrm_box_removed')=="yes"){ ?><br>
+<br>
 
-<?php echo __("Mögen Sie dieses Plug-in oder brauchen Sie Hilfe?","hrm-work-tracking"); ?><br><?php paypal_spenden_button(); ?><?php request_support_button();?>
+<?php echo __("Do you like this plugin or need help?","hrm-work-tracking"); ?><br><?php paypal_spenden_button(); ?><?php request_support_button();?> 
+<a href="https://twitter.com/intent/tweet?button_hashtag=wphrmwt" class="twitter-hashtag-button" data-size="large" data-related="wpplugindevcom">Tweet #wphrmwt</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
 </div>
-</div>
-<?php }else{} }else{} ?>
+<?php  }else{} ?>
 
 <div class="postbox" >
 <div class="inside">
