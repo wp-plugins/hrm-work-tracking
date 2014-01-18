@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: theo dege <theo@berlin.com>\n"
+"Last-Translator: theo <theo@berlin.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 
