@@ -173,7 +173,10 @@ window.location.href = "index.php?page=hrm-dashboard-page";
 </script>
     <?php
     foreach ($notices as $notice) {
-      echo "<div class='updated'><p>$notice</p></div>";
+    if($notice==""){}
+    else{
+      echo "<div class='updated'><p>".$notice."</p></div>";
+      }
     }
     delete_option('hrm_deferred_admin_notices');
   }
