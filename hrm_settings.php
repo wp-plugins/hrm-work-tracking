@@ -171,7 +171,7 @@ Remote Logging <?php echo __("is","hrm-work-tracking"); ?> <input type="radio" n
 
 <div class="postbox" >
 <div class="inside">
-<input type="submit" name="change_settings" value="<?php _e("Daten absenden","hrm-work-tracking"); ?>" class="pause" />
+<input type="submit" name="change_settings" value="<?php _e("Send Data","hrm-work-tracking"); ?>" class="pause" />
 </div></div>
 
 <?php 

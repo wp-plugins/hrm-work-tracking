@@ -11,7 +11,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 	<h1><?php _e( 'Welcome to HRM Work Tracking' ); ?></h1>
 	
 	<div class="about-text">
-		<?php _e('Hello Stranger. You are running the HRM Work Tracking Plugin in version 1.4. For those of you who update from an earlier version read about the changes. The others: Have Fun!' ); ?>
+		<?php _e('Hello Stranger. You are running the HRM Work Tracking Plugin in version 1.41. For those of you who update from an earlier version read about the changes. The others: Have Fun!' ); ?>
 	</div>
 	
 	<h2 class="nav-tab-wrapper">
@@ -36,6 +36,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 		
 			<style>td, th {border:1px groove white;}</style>
 			<table>
+			<tr><th>1.41</th><td>some minor changes</td></tr>
 			<tr><th>1.4</th><td>time tracking on how long somebody needs on post, added a welcome page</td></tr>
 			<tr><th>1.39</th><td>Standard language changed from german to english</td></tr>
 			<tr><th>1.3</th><td>Auto logout from time tracking, Settings page, remote logging, stop logging on logout</td></tr>
@@ -55,7 +56,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 
 		<div id="welcome-content">
 		<h2>Welcome</h2>
-		This is version 1.4. It is one of the biggest updates so far.<br><br>
+		This is version 1.41. It is small update from 1.4.<br><br>
 		I want to highlight a few <b>highlights</b>:<br />
 		<ul>
 		<li>&dash; It is completly translated into english as native language</li>
@@ -64,14 +65,14 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 		<li>&dash; It includes remote logging</li>
 		<li>&dash; It can auto logoff if user is inactive</li>
 		<li>&dash; You can clear all times</li>
-		<li>&dash; With .po files ou can translate it into every language</li>
+		<li>&dash; With .po files you can translate it into every language</li>
 
 		</ul>
 		
 		<hr>
-		<img src="http://openclipart.org/image/72px/svg_to_png/170325/beta_TEST.png" style="float:left;padding:5px"  /> Some of the functions are still in Beta.
-		<br>Please consider a donation for further development.<?php paypal_spenden_button(); ?><br /><br /><br /><hr>
-		<img src="http://openclipart.org/image/32px/svg_to_png/12785/Anonymous_Flag_of_Germany.png" style="float:left;padding:5px"  /> Die Standardsprache war bisher Deutsch. <br>Da es viele Beschwerden gab, ist die vorliegende Standardsprache nun Englisch. &Uuml;bersetzung folgt!
+		<img src="http://openclipart.org/image/50px/svg_to_png/14394/mystica_Coins_(Money).png" style="float:left;padding:5px"  />
+		Please consider a donation for further development.<?php paypal_spenden_button(); ?><br /><br /><br /><hr>
+		<br><img src="http://openclipart.org/image/32px/svg_to_png/12785/Anonymous_Flag_of_Germany.png" style="float:left;padding:5px"  /> Die Standardsprache war bis jetzt Deutsch. <br>Da es viele Beschwerden gab, ist die vorliegende Standardsprache nun Englisch.<br />Diese Seite hier gibt es nur in Englisch.
 			<br><br><br><hr><img src="http://wp-plugin-dev.com/buttons/bird_blue_32.png" style="float:left;padding:5px"  />No money to donate? Donate a Tweet: <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 
 <p><a href="https://twitter.com/intent/tweet?text=I%20support%20the%20HRM%20Work%20Tracking%20plugin%20for&via=wpplugindevcom&hashtags=WordPress,timetracking,plugin,wphrmwt">Support this plugin with Twitter</a></p>	
@@ -103,7 +104,8 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 
 
 </div>
-<?php include( ABSPATH . 'wp-admin/admin-footer.php' );}
+<?php //include( ABSPATH . 'wp-admin/admin-footer.php' );
+}
 
 
 function custom_dashboard_hrm(){
@@ -124,9 +126,9 @@ function hrm_admin_notices_tweet(){
 global $current_user;
 $uid = $current_user->ID;
 $hrmid = get_option('human_resources_department');
-$rac=rand(0,5);
+$rac=rand(0,100);
 
-if ($hrmid==$uid && $rac==4){ 
+if ($hrmid==$uid && $rac==55){ 
 echo "<div class='updated'>";
 ?>
 <img src="http://wp-plugin-dev.com/buttons/bird_blue_32.png" style="float:left;padding:5px"  /><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>

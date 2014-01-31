@@ -229,7 +229,7 @@ $blogusers = get_users("orderby=id");
 <?php else:  ?>
   <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
 <?php endif; ?>
-<tr><td></td><td></td><td><?php echo round($full_time/3600,2);?> hours</td></tr>
+<tr><td></td><td></td><td><?php echo round($full_time/3600,2); echo " ".__("hours","hrm-work-tracking");?></td></tr>
 </table><?php
      
     

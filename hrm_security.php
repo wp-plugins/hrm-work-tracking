@@ -80,6 +80,7 @@ $user->add_cap( 'edit_users');
 	else {
 		$user = new WP_User( $uid );
 $user->remove_cap( 'edit_users');
+$is_hrm=false;
 	}
 	}
 
