@@ -11,7 +11,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 	<h1><?php _e( 'Welcome to HRM Work Tracking' ); ?></h1>
 	
 	<div class="about-text">
-		<?php _e('Hello Stranger. You are running the HRM Work Tracking Plugin in version 1.41. For those of you who update from an earlier version read about the changes. The others: Have Fun!' ); ?>
+		<?php _e('Hello Stranger. You are running the HRM Work Tracking Plugin in version 1.42. For those of you who update from an earlier version than 1.4 read about the changes. The others: Have Fun!' ); ?>
 	</div>
 	
 	<h2 class="nav-tab-wrapper">
@@ -56,7 +56,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 
 		<div id="welcome-content">
 		<h2>Welcome</h2>
-		This is version 1.41. It is small update from 1.4.<br><br>
+		This is version 1.42. This is an update from 1.41. This version includes daily time statistics.<br><br>
 		I want to highlight a few <b>highlights</b>:<br />
 		<ul>
 		<li>&dash; It is completly translated into english as native language</li>

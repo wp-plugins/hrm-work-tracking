@@ -35,6 +35,8 @@ function user_stops_to_work($user) {
 
 $month=date("F");
 $year=date("Y");
+$day=date("j"); // since 1.42
+
 
     $this_user=$user;
 	$beginn=get_user_meta($this_user, "Arbeitszeitbeginn", true);
@@ -49,6 +51,11 @@ $year=date("Y");
 
 
     update_user_meta( $this_user, "Arbeitszeit_gesamt_".$year."_".$month, $arbeitszeit_heute);
+    if(get_option("hrm_daily")=="true"){
+    $todays_work=get_user_meta($this_user, "Arbeitszeit_".$year."_".$month."_".$day, true);
+    $todays_work_total=$todays_work+$today;
+    update_user_meta( $user, "Arbeitszeit_".$year."_".$month."_".$day, $todays_work_total); // since 1.42
+    }
     update_user_meta( $this_user, "in_office", "no");
     update_user_meta( $this_user, "Pausenkonto", "0");
     }else{
@@ -125,12 +132,16 @@ update_option( 'human_resources_department', $current_user->ID);
 function reset_times($user){
 $month=date("F");
 $year=date("Y");
+$day=date("j"); // since 1.42
 
 update_user_meta( $user, "Pausenkonto", "0");
 update_user_meta( $user, "in_pause", "no");
 update_user_meta( $user, "in_office", "no");
 update_user_meta( $user, "is_ill", "no");
 update_user_meta( $user, "Arbeitszeit_gesamt_".$year."_".$month, "0");
+if(get_option("hrm_daily")=="true"){
+update_user_meta( $user, "Arbeitszeit_".$year."_".$month."_".$day, "0"); // since 1.42
+}
 }
 
 function register_hrm() {

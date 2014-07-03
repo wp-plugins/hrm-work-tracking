@@ -44,6 +44,9 @@ update_option("logoff_logging_option", $_POST["logoff_logging_option"] );
 if(isset($_POST['auto_logoff_option'])){
 update_option("auto_logoff_option", $_POST["auto_logoff_option"] );
 }else{}
+if(isset($_POST['hrm_daily'])){
+update_option("hrm_daily", $_POST["hrm_daily"] );
+}else{}
 
  // -------------------------------------------------------------------- 
 
@@ -154,6 +157,18 @@ Remote Logging <?php echo __("is","hrm-work-tracking"); ?> <input type="radio" n
 <?php if($pmlo=="on"){echo "checked=checked";}else{} ?>
 /> <?php echo __("on","hrm-work-tracking"); ?> <input type="radio" name="post_measure_logging_option" value="off" <?php if($pmlo=="off"  || $pmlo==""){echo "checked=checked";}else{} ?> /> <?php echo __("off","hrm-work-tracking"); ?>
 </div></div>
+
+<div class="postbox" >
+<div class="inside">
+<?php
+//update_option("hrm_daily", true );
+$pmld=get_option("hrm_daily"); 
+echo __("Daily Time Stats is ","hrm-work-tracking"); ?> <input type="radio" name="hrm_daily" value="true" 
+<?php if($pmld=="true"){echo "checked=checked";}else{} ?>
+/> <?php echo __("on","hrm-work-tracking"); ?> <input type="radio" name="hrm_daily" value="false" <?php if($pmld=="false"  || $pmld==""){echo "checked=checked";}else{} ?> /> <?php echo __("off","hrm-work-tracking"); ?>
+ <?php echo "<font style='color:red;font-size:9px;'>".__("Be careful this can produce a lot of records in your Database","hrm-work-tracking")."</font>"; ?>
+</div></div>
+
 
 
 </form>

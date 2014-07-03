@@ -73,7 +73,11 @@ echo "</div><br />";
 if(is_hrm()){
 //echo "<font color=\"#ff0000\">you are hrm</font><br />";
 }else{}
-$hddropdown=check_historical_data(); ?>
+$hddropdown=check_historical_data(); 
+$hd_daily_num=$_POST['dayshow'];
+
+
+?>
 <form method="POST" name="hrm-years">
 <?php _e('period', 'hrm-work-tracking'); ?>: <select name="dateshow" onchange="this.form.submit()">
 <?php
@@ -83,8 +87,39 @@ if($_POST['dateshow']==$hd){echo " selected ";}else{}
 $dt=explode("_",$hd);
 echo ">".$dt[0]." ".__($dt[1])."</option>";
 }
+
 ?>
-</select><br /><br />
+</select>
+<?php 
+//print_r($dateshow);
+$dt=explode("_",$dateshow);
+$smonth=date("n", strtotime($dt[1]));
+$syear=$dt[0];
+//print_r($smonth);
+if(get_option("hrm_daily")=="true"){?>Day: <select  name="dayshow" onchange="this.form.submit()" >
+<option value="no" ><?php _e('no specific day','hrm-work-tracking'); ?></option>
+<?php
+$days = cal_days_in_month (CAL_GREGORIAN, $smonth , $syear ); // since 1.42
+$i=0;
+while ($i<$days){
+echo "<option value=\"".($i+1)."\"";
+if($_POST['dayshow']==($i+1)){echo " selected ";}else{}
+echo ">";
+echo $i+1;
+echo "</option>";
+$i++;
+}
+?>
+</select>
+<?php
+if(isset($_POST['dayshow']) && $_POST['dayshow']!="no"){
+echo "<h2>".__("Statistics for ","hrm-work-tracking").$hd_daily_num." ".$dt[1]." ".$dt[0]."</h2>";
+
+}
+}else{}
+?>
+
+<br /><br />
 </form>
 <?php
 
@@ -94,12 +129,12 @@ echo ">".$dt[0]." ".__($dt[1])."</option>";
 <table class="wp-list-table widefat fixed users" cellspacing="0">
 	<thead>
 	<tr>
-	<th scope='col' id='working' class='manage-column'><?php _e('online', 'hrm-work-tracking');?></th><th scope='col' id='working' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=id">ID</a></th><th scope='col' id='cb' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=name"><?php _e('Name', 'hrm-work-tracking');?></a></th><th scope='col' class='manage-column'><?php _e('e-mail', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('target hours per day', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('hours per week / month', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('actual hours per month', 'hrm-work-tracking');?></th><?php  if (get_option("remote_logging_option")=="on"){?><th>Remote Logging</th><?php }else{} ?></tr>
+	<th scope='col' id='working' class='manage-column'><?php _e('online', 'hrm-work-tracking');?></th><th scope='col' id='working' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=id">ID</a></th><th scope='col' id='cb' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=name"><?php _e('Name', 'hrm-work-tracking');?></a></th><th scope='col' class='manage-column'><?php _e('e-mail', 'hrm-work-tracking');?></th><?php if(isset($_POST['dayshow']) && $_POST['dayshow']!="no"){ ?><th scope='col' id='hdd' class='manage-column'><?php echo __("Hours this day","hrm-work-tracking"); ?></th><th scope='col' id='hdd' class='manage-column'><?php echo __("target Hours per day","hrm-work-tracking"); ?></th><th scope='col' class='manage-column'><?php _e('hours per week / month', 'hrm-work-tracking');?></th><?php }else{ ?><th scope='col' class='manage-column'><?php _e('target hours per day', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('hours per week / month', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('actual hours per month', 'hrm-work-tracking');?></th><?php }  if(get_option("remote_logging_option")=="on"){?><th>Remote Logging</th><?php }else{} ?></tr>
 	</thead>
 
 	<tfoot>
 	<tr>
-	<th scope='col' id='working' class='manage-column'><?php _e('online', 'hrm-work-tracking');?></th><th scope='col' id='working' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=id">ID</a></th><th scope='col' id='cb' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=name"><?php _e('Name', 'hrm-work-tracking');?></a></th><th scope='col' class='manage-column'><?php _e('e-mail', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('target hours per day', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('hours per week / month', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('actual hours per month', 'hrm-work-tracking');?></th><?php  if (get_option("remote_logging_option")=="on"){?><th>Remote Logging</th><?php }else{} ?></tr>
+	<th scope='col' id='working' class='manage-column'><?php _e('online', 'hrm-work-tracking');?></th><th scope='col' id='working' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=id">ID</a></th><th scope='col' id='cb' class='manage-column'><a href="<?php echo curPageURL23();?>&uo=name"><?php _e('Name', 'hrm-work-tracking');?></a></th><th scope='col' class='manage-column'><?php _e('e-mail', 'hrm-work-tracking');?></th><?php if(isset($_POST['dayshow']) && $_POST['dayshow']!="no"){ ?> <th scope='col' id='hdd' class='manage-column'><?php echo __("Hours this day","hrm-work-tracking"); ?></th><th scope='col' id='hdd' class='manage-column'><?php echo __("target Hours per day","hrm-work-tracking"); ?></th><th scope='col' class='manage-column'><?php _e('hours per week / month', 'hrm-work-tracking');?></th><?php }else{ ?><th scope='col' class='manage-column'><?php _e('target hours per day', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('hours per week / month', 'hrm-work-tracking');?></th><th scope='col' class='manage-column'><?php _e('actual hours per month', 'hrm-work-tracking');?></th><?php } if (get_option("remote_logging_option")=="on"){?><th>Remote Logging</th><?php }else{} ?></tr>
 
 	<tbody id="the-list" data-wp-lists='list:user'>
 		
@@ -117,7 +152,15 @@ $blogusers = get_users('blog_id=1&orderby='.$_GET['uo']);
     if($user->in_office=="yes" && $datecurrent==$_POST['dateshow']){
     $heute= round(((current_time('timestamp') - ($user->Pausenkonto) - ($user->Arbeitszeitbeginn))/3600),2);   
     } else {$heute=0;}    
-    echo '<tr><td> '.$status.' </td><td>'.$user->ID.'</td><td><a href="user-edit.php?user_id='.$user->ID.'">'.$user->first_name .' '.$user->last_name .'</a></td><td>' . $user->user_email . '</td><td> '.($whow/5).' </td><td> '.($whow).' / '.($whow*4).' </td>';
+    echo '<tr><td> '.$status.' </td><td>'.$user->ID.'</td><td><a href="user-edit.php?user_id='.$user->ID.'">'.$user->first_name .' '.$user->last_name .'</a></td><td>' . $user->user_email . '</td>';
+    
+    if(isset($_POST['dayshow']) && $_POST['dayshow']!="no"){
+    $this_day="Arbeitszeit_".$dt[0]."_".$dt[1]."_".$_POST['dayshow'];
+    $user_day=get_user_meta($user->ID,$this_day,true);
+    echo '<td>'.(round($user_day/3600,2)).'</td><td>'.($whow/5).'</td>';}
+    else{
+    echo '<td> '.($whow/5).' </td><td> '.($whow).' / '.($whow*4).' </td>';
+    }
     $ms=$whow*4;
     if($ms<$arbeitzeit_diesen_monat){
     echo '<td><font color="#ff0000">'.$arbeitzeit_diesen_monat.'';
