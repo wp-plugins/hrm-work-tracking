@@ -4,7 +4,7 @@ Donate link: http://www.wp-plugin-dev.com/donate
 Tags: backend, work, clock, employee, time, time-tracking, tracking, user, Zeiterfassung,hr,human resources
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.42
+Stable tag: 1.43
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
