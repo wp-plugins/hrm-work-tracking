@@ -194,9 +194,9 @@ $blogusers = get_users("orderby=id");
 <option value="12" <?php if($month_to_show=="12") echo "selected";?>><?php _e("December"); ?></option>
 </select>
 <select name="year_to_show">
-<option value="2014" <?php if($year_to_show=="2013") echo "selected";?>>2013</option>
+<option value="2013" <?php if($year_to_show=="2013") echo "selected";?>>2013</option>
 <option value="2014" <?php if($year_to_show=="2014") echo "selected";?>>2014</option>
-<option value="2014" <?php if($year_to_show=="2015") echo "selected";?>>2015</option>
+<option value="2015" <?php if($year_to_show=="2015") echo "selected";?>>2015</option>
 </select>
 <input type="submit" value="<?php _e("Change Date","hrm-work-tracking");?>" />
 </form>
